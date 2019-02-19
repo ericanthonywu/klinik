@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::post('/login',"auth@login");
+Route::post('/register',"auth@register");
+Route::get('/cruddokter',"page@dokter");
