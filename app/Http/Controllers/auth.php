@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use http\Env\Response;
 use Illuminate\Http\Request;
 use App\User;
 
@@ -13,9 +12,10 @@ class auth extends Controller
         $where = $user::where('username',$r->username)->first();
         $check= \Hash::check($r->password,$where->password);
         if($check){
-            return response()->json("login");
+            \Session::put('user',$r->username);
+            return "";
         }else{
-            return response()->json("login gagal");
+            return response()->json("Password salah");
         }
 
     }

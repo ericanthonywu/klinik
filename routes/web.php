@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,9 +10,26 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', "page@index");
 Route::post('/login',"auth@login");
 Route::post('/register',"auth@register");
-Route::get('/cruddokter',"page@dokter");
+Route::get('/logout',"page@logout");
+Route::middleware("authcheck")->group(function (){
+    //dashboard tampilan
+    Route::get('/home',"page@home");
+    //dokter
+    Route::get('/dokter',"page@dokter");
+    Route::get('table/dokter',"table@dokter");
+    Route::get('/tambah/dokter',"page@tambahdokter");
+    Route::get('/edit/dokter/{id}',"page@editdokter");
+    //user
+    Route::get('/user',"page@user");
+    //obat
+    Route::post('table/obat',"table@obat");
+    Route::post('/editobat',"crud@editobat");
+    Route::post('/tambahobat',"crud@tambahobat");
+    Route::post('/delobat',"crud@hapusobat");
+    Route::get('/obat',"page@obat");
+    Route::get('/tambah/obat',"page@tambahobat");
+    Route::get('/edit/obat/{id}',"page@editobat");
+});
