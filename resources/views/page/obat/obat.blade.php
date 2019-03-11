@@ -186,55 +186,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!--begin: Search Form -->
                         <div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
                             <div class="row align-items-center">
-                                <div class="col-xl-8 order-2 order-xl-1">
-                                    <div class="form-group m-form__group row align-items-center">
-                                        <div class="col-md-4">
-                                            <div class="m-form__group m-form__group--inline">
-                                                <div class="m-form__label">
-                                                    <label>Status:</label>
-                                                </div>
-                                                <div class="m-form__control">
-                                                    <select class="form-control m-bootstrap-select m-bootstrap-select--solid"
-                                                            id="m_form_status">
-                                                        <option value="">Semua Jenis Obat</option>
-                                                        @foreach($data as $val)
-                                                            <option value="{{$val['jenis']}}">{{$val['jenis']}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="d-md-none m--margin-bottom-10"></div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="m-form__group m-form__group--inline">
-                                                <div class="m-form__label">
-                                                    <label class="m-label m-label--single">Type:</label>
-                                                </div>
-                                                <div class="m-form__control">
-                                                    <select class="form-control m-bootstrap-select m-bootstrap-select--solid"
-                                                            id="m_form_type">
-                                                        <option value="">All</option>
-                                                        <option value="1">Online</option>
-                                                        <option value="2">Retail</option>
-                                                        <option value="3">Direct</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="d-md-none m--margin-bottom-10"></div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="m-input-icon m-input-icon--left">
-                                                <input type="text" class="form-control m-input m-input--solid"
-                                                       placeholder="Search..." id="generalSearch">
-                                                <span class="m-input-icon__icon m-input-icon__icon--left">
-															<span><i class="la la-search"></i></span>
-														</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 order-1 order-xl-2 m--align-right">
-
+                                <div class="col-xl-4 order-1 order-xl-2">
                                     <a href="{{url('/tambah/obat')}}"
                                        class="btn btn-focus m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
 												<span>
@@ -250,7 +202,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!--end: Search Form -->
 
                         <!--begin: Datatable -->
-                        <div class="m_datatable tblobat"></div>
+                        <table class="m_datatable" id="tblobat"></table>
                         <!--end: Datatable -->
 
                     </div>
