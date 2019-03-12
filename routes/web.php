@@ -25,7 +25,7 @@ Route::middleware("authcheck")->group(function (){
     //user
     Route::get('/user',"page@user");
     //obat
-    Route::get('table/obat',"table@obat");
+    Route::post('table/obat',"table@obat");
     Route::post('/editobat',"crud@editobat");
     Route::post('/tambahobat',"crud@tambahobat");
     Route::post('/delobat',"crud@hapusobat");

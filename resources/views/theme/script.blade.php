@@ -1,3 +1,7 @@
+<script>
+    let base_url = window.location.origin+"/";
+    let host = window.location.host;
+</script>
 <!--begin::Global Theme Bundle -->
 <script src="{{asset('assets/vendors/base/vendors.bundle.js')}}"></script>
 <script src="{{asset('assets/demo/demo12/base/scripts.bundle.js')}}"></script>

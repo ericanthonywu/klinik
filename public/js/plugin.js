@@ -1,4 +1,41 @@
 $(document).ready(function () {
+    function validateEmail(email) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+
+    function validatenohp(nomor) {
+        var re = /^08[0-9]{9,}$/;
+        return re.test(nomor)
+    }
+
+    function numberWithCommas(n) {
+        var parts = n.toString().split(".");
+        return parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",") + (parts[1] ? "." + parts[1] : "");
+    }
+
+    function animasinomor(tipe, selector, angkaawal, angkaakhir, durasi, komanomor) {
+        if (tipe === "id") {
+            selector = $('#' + selector);
+        } else if (tipe === "class") {
+            selector = $('.' + selector);
+        }
+        selector.each(function () {
+            $(this).prop('Counter', angkaawal).animate({
+                Counter: angkaakhir
+            }, {
+                duration: durasi,
+                easing: 'swing',
+                step: function (now) {
+                    if (komanomor === "yes") {
+                        $(this).text(numberWithCommas(Math.ceil(now)));
+                    } else {
+                        $(this).text(Math.ceil(now));
+                    }
+                }
+            });
+        });
+    }
     $("img").prop("draggable", false);
     $("#preventdef").click(function (e) {
         e.preventDefault();
@@ -19,16 +56,6 @@ $(document).ready(function () {
             return false;
         }
     });
-
-    function validateEmail(email) {
-        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(email);
-    }
-
-    function validatenohp(nomor) {
-        var re = /^08[0-9]{9,}$/;
-        return re.test(nomor)
-    }
 
     $('.valuevalidate').bind('keyup keypress', function validatevalue() {
         var max = $(this).data('max-val');
@@ -59,34 +86,6 @@ $(document).ready(function () {
             $(this).val(value.substring(0, max));
         }
     });
-
-    function numberWithCommas(n) {
-        var parts = n.toString().split(".");
-        return parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",") + (parts[1] ? "." + parts[1] : "");
-    }
-
-    function animasinomor(tipe, selector, angkaawal, angkaakhir, durasi, komanomor) {
-        if (tipe === "id") {
-            selector = $('#' + selector);
-        } else if (tipe === "class") {
-            selector = $('.' + selector);
-        }
-        selector.each(function () {
-            $(this).prop('Counter', angkaawal).animate({
-                Counter: angkaakhir
-            }, {
-                duration: durasi,
-                easing: 'swing',
-                step: function (now) {
-                    if (komanomor === "yes") {
-                        $(this).text(numberWithCommas(Math.ceil(now)));
-                    } else {
-                        $(this).text(Math.ceil(now));
-                    }
-                }
-            });
-        });
-    }
 
     $('.ribuan').keyup(function (event) {
         if (event.which >= 37 && event.which <= 40) return;
@@ -198,3 +197,41 @@ $(document).ready(function () {
         }
     });
 });
+
+    function validateEmail(email) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+
+    function validatenohp(nomor) {
+        var re = /^08[0-9]{9,}$/;
+        return re.test(nomor)
+    }
+
+    function numberWithCommas(n) {
+        var parts = n.toString().split(".");
+        return parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",") + (parts[1] ? "." + parts[1] : "");
+    }
+
+    function animasinomor(tipe, selector, angkaawal, angkaakhir, durasi, komanomor) {
+        if (tipe === "id") {
+            selector = $('#' + selector);
+        } else if (tipe === "class") {
+            selector = $('.' + selector);
+        }
+        selector.each(function () {
+            $(this).prop('Counter', angkaawal).animate({
+                Counter: angkaakhir
+            }, {
+                duration: durasi,
+                easing: 'swing',
+                step: function (now) {
+                    if (komanomor === "yes") {
+                        $(this).text(numberWithCommas(Math.ceil(now)));
+                    } else {
+                        $(this).text(Math.ceil(now));
+                    }
+                }
+            });
+        });
+    }
