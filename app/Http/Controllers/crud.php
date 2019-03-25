@@ -24,7 +24,7 @@ class crud extends Controller
         $obat->BPJS = $r->bpjs;
         $obat->harga = $r->harga;
         $obat->save();
-        return redirect('/obat');
+        return "";
     }
     function editobat(Request $r){
         $obat = new obat();
@@ -34,11 +34,11 @@ class crud extends Controller
         $obat->BPJS = $r->BPJS;
         $obat->harga = $r->harga;
         $obat->save();
-        return redirect('/obat');
+        return "";
     }
     function hapusobat(Request $r){
         $obat = new obat();
         $obat::where('id',$r->id)->delete();
-        return redirect('/obat');
+        return "";
     }
 }

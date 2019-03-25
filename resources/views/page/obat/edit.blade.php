@@ -121,13 +121,14 @@ License: You must have a valid license purchased only from themeforest(the above
                         </div>
 
                         <!--begin::Form-->
-                        @foreach($datas  as $data)
                         <form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator" id="feditobat">
+                            <input type="hidden" name="id" value="{{$data['id']}}">
+                            {{csrf_field()}}
                             <div class="m-portlet__body">
                                 <div class="form-group m-form__group row">
                                     <label class="col-lg-2 col-form-label">Nama Obat</label>
                                     <div class="col-lg-6">
-                                        <input type="text" class="form-control m-input" placeholder="Masukkan Nama Obat" name="namaobat" value="{{$data['nama']}}">
+                                        <input type="text" class="form-control m-input" placeholder="Masukkan Nama Obat" name="nama" value="{{$data['nama']}}">
                                         <span class="m-form__help">Mohon Masukkan Nama Obat</span>
                                     </div>
                                 </div>
@@ -136,8 +137,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <div class="col-lg-6">
                                         <select name="jenisobat" class="form-control slcjenisobat">
                                             <option value="" selected> Pilih Jenis Obat </option>
-                                            <option value="obatpahit" @if($data['jenis'] == "obatpahit") selected @endif> Obat Pahit</option>
-                                            <option value="obatmurah" @if($data['jenis'] == "obatmurah") selected @endif>Obat Murah</option>
+                                            <option value="obat1" @if($data['jenis'] == "obat1") selected @endif> Obat 1</option>
+                                            <option value="obat2" @if($data['jenis'] == "obat2") selected @endif>Obat 2</option>
+                                            <option value="obat3" @if($data['jenis'] == "obat3") selected @endif>Obat 3</option>
                                         </select>
                                         <span class="m-form__help">Harap pilih jenis obat</span>
                                     </div>
@@ -146,21 +148,24 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <label class="col-lg-2 col-form-label">BPJS:</label>
                                     <div class="col-lg-6">
                                         <select name="BPJS" class="form-control slcbpjs">
-                                            <option value="" selected>Pilih BPJS</option>
-                                            <option value="1">BPJS terpercaya</option>
-                                            <option value="2">BPJS kurang terpercaya</option>
+                                            <option value="" selected>- Pilih BPJS</option>
+                                            <option value="1" @if($data['BPJS'] == "1") selected @endif>BPJS 1</option>
+                                            <option value="2" @if($data['BPJS'] == "2") selected @endif>BPJS 2</option>
+                                            <option value="3" @if($data['BPJS'] == "3") selected @endif>BPJS 3</option>
+                                            <option value="4" @if($data['BPJS'] == "4") selected @endif>BPJS 4</option>
                                         </select>
-                                        <span class="m-form__help">Pilih BPJS yg tersedia</span>
+                                        <span class="m-form__help">Ganti BPJS yg tersedia</span>
                                     </div>
                                 </div>
                                 <div class="m-form__group m-form__group--last form-group row">
-                                    <label class="col-lg-2 col-form-label">Harga:</label>
+                                    <label class="col-lg-2 col-form-label"> Harga: </label>
                                     <div class="col-lg-6">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text">Rp.</div>
-                                            <input type="text" class="form-control">
+                                            <div class="input-group-append"><span class="input-group-text">Rp.</span></div>
+                                            <input type="text" class="form-control m-input number ribuan" data-id-selector="harga" value="{{number_format($data['harga'])}}" placeholder="Masukkan Harga Obat">
+                                            <input type="hidden" name="harga" id="harga" value="{{$data['harga']}}">
                                         </div>
-                                        <span class="m-form__help">We'll never share your email with anyone else</span>
+                                        <span class="m-form__help">Ubah Harga obat</span>
                                     </div>
                                 </div>
                             </div>
@@ -169,14 +174,13 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <div class="row">
                                         <div class="col-lg-2"></div>
                                         <div class="col-lg-6">
-                                            <button type="reset" class="btn btn-success">Submit</button>
+                                            <button type="submit" class="btn btn-success">Submit</button>
                                             <button type="reset" class="btn btn-secondary">Cancel</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </form>
-                        @endforeach
                         <!--end::Form-->
                     </div>
                 </div>

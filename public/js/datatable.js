@@ -2,6 +2,12 @@ $(document).ready(function () {
     let base_url = window.location.origin + "/";
     let host = window.location.host;
     $('.btn-data').tooltip();
+
+    function numberWithCommas(n) {
+        var parts = n.toString().split(".");
+        return parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",") + (parts[1] ? "." + parts[1] : "");
+    }
+
     var tblobat = $('#tblobat').mDatatable({
         // datasource definition
         data: {
@@ -37,18 +43,22 @@ $(document).ready(function () {
             textAlign: 'center'
         }, {
             field: "nama",
-            title: "Nama"
+            title: "Nama",
+            textAlign: 'center'
         }, {
             field: "jenis",
-            title: "Jenis"
+            title: "Jenis",
+            textAlign: 'center'
         }, {
             field: "BPJS",
             title: "BPJS",
+            textAlign: 'center'
         }, {
             field: "harga",
             title: "Harga",
+            textAlign: 'center',
             template: (t, e, a) => {
-                return `Rp. ${t.harga}`
+                return `Rp. ${numberWithCommas(t.harga)}`
             }
         }, {
             field: "Actions",
@@ -57,6 +67,7 @@ $(document).ready(function () {
             sortable: false,
             overflow: 'visible',
             template: function (t, e, a) {
+                $('.btn-data').tooltip();
                 return `
                         <button class="btn btn-circle btn-warning btn-xs btn-data btn-edit" data-id="${t.id}"
                          data-table="obat" data-toggle="tooltip" data-placement="top" title="Perbarui Data">
@@ -67,17 +78,18 @@ $(document).ready(function () {
                          data-id="${t.id}" data-table="obat" data-toggle="tooltip" data-placement="top" title="Hapus Data">
                             <i class="fa fa-trash"></i>
                         </button>
-                        `;
+                `;
             }
         }]
     });
+
+    //----------edit delete----------------------------
     $(document).on('click', '.btn-edit', function () {
         let table = $(this).data('table'),
             id = $(this).data('id');
         location.href = `${base_url}edit/${table}/${id}`
     });
     $(document).on('click', '.btn-del', function () {
-        tblobat.reload();
         let table = $(this).data('table'),
             id = $(this).data('id');
         $.ajax({

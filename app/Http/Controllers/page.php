@@ -61,10 +61,13 @@ class page extends Controller
         ]);
     }
     function editobat($id){
-        $obat = new obat();
-//        $data = ;
-        return view('page/obat/edit',[
-            "datas"=>$obat::where("id",$id)->first()
-        ]);
+        $data = obat::find($id);
+        if($data) {
+            return view('page/obat/edit', [
+                "data" => $data
+            ]);
+        }else{
+            return redirect()->back();
+        }
     }
 }
